@@ -12,10 +12,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Need to add code for collecting and storing inputs to database
-// TO BE TESTED
-
-// Define the Author and Book table creation SQL
+// Define the Author, Book and BookAuthor table creation SQL
 $createAuthorTableSQL = "CREATE TABLE IF NOT EXISTS Author (
     authorID int UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     firstName varchar(30) NOT NULL,
@@ -24,7 +21,6 @@ $createAuthorTableSQL = "CREATE TABLE IF NOT EXISTS Author (
 
 $createBookTableSQL = "CREATE TABLE IF NOT EXISTS Book (
     bookID int UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    categoryID int UNSIGNED NOT NULL,
     title varchar(255) NOT NULL,
     price decimal(10,2) NOT NULL
 )";
@@ -60,7 +56,7 @@ if ($conn->query($createBookAuthorTableSQL) === TRUE) {
 $authorFirstName = $_POST['authorFirstName'];
 $authorLastName = $_POST['authorLastName'];
 $bookTitle = $_POST['bookTitle'];
-$bookPrice = $_POST['bookPrice'];
+$bookPrice = $_POST['price']; // Update the variable name to match the HTML form field name
 
 // Insert data into the Author table
 $authorSQL = "INSERT INTO Author (firstName, lastName) VALUES ('$authorFirstName', '$authorLastName')";
@@ -70,7 +66,7 @@ if ($conn->query($authorSQL) === TRUE) {
     $lastAuthorID = $conn->insert_id;
 
     // Insert data into the Book table
-    $bookSQL = "INSERT INTO Book (title, price, categoryID) VALUES ('$bookTitle', $bookPrice, 1)"; // Assuming categoryID is 1
+    $bookSQL = "INSERT INTO Book (title, price) VALUES ('$bookTitle', $bookPrice)";
 
     if ($conn->query($bookSQL) === TRUE) {
         // Get the last inserted book ID
@@ -92,3 +88,4 @@ if ($conn->query($authorSQL) === TRUE) {
 }
 
 $conn->close();
+?>
