@@ -13,8 +13,8 @@ if ($conn->connect_error) {
 }
 
 // Function to create tables if they don't exist
-function createTables($conn)
-{// Define the Author, Book and BookAuthor table creation SQL
+function createTables($conn) {
+    // Define the Author, Book and BookAuthor table creation SQL
     $createAuthorTableSQL = "CREATE TABLE IF NOT EXISTS Author (
         authorID int UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         firstName varchar(30) NOT NULL,
@@ -160,7 +160,7 @@ function displayCombinedTableData($conn) {
 function displayIndividualTables($conn) {
     echo "<div class='individual-table'>";
     echo "<h2>Author Table</h2>";
-    $sql = "SELECT authorID AS 'Author ID', firstName AS 'Author First Name', lastName AS 'Author Last Name' FROM Author";
+    $sql = "SELECT authorID AS 'Author ID', firstName AS 'Author First Name', lastName AS 'Author Last Name' FROM Author ORDER BY authorID ASC";
     displayTable($conn, $sql);
 
     echo "<h2>Book Table</h2>";
