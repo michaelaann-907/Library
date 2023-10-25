@@ -1,4 +1,4 @@
-# ![image](https://github.com/michaelaann-907/Library/assets/114198365/fd4626d5-2c62-4314-8145-da875e0eaba2)
+# Library
 <br/>
 Program Description: This program is a web-based library catalog system that allows users to add and view books and their associated authors. It ensures that each author is uniquely assigned an authorID.  
 <br/>
